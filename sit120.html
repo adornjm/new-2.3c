@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Professional Vue 3 App</title>
+    <script src="https://unpkg.com/vue@3.0.0/dist/vue.global.js"></script>
+    <style>
+        /* Add your component styles here */
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .app-container {
+            text-align: center;
+            margin-top: 50px;
+        }
+        .message {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+        .button-container {
+            margin-top: 20px;
+        }
+        .button {
+            padding: 10px 20px;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+    <div id="app" class="app-container">
+        <app></app>
+    </div>
+
+    <script type="module">
+        // Define and import your components
+        const App = {
+            template: `
+                <div>
+                    <h1 class="message">{{ message }}</h1>
+
+                    <!-- Template Syntax -->
+                    <p>{{ message }}</p>
+                    <div :id="dynamicId">Dynamic ID Element</div>
+                    <p>{{ 1 + 4 }}</p>
+
+                    <!-- Methods -->
+                    <div class="button-container">
+                        <button @click="sayHello" class="button">Say Hello</button>
+                    </div>
+
+                    <!-- Reactivity Fundamentals -->
+                    <p>{{ count }}</p>
+                    <div class="button-container">
+                        <button @click="incrementCount" class="button">Increment Count</button>
+                    </div>
+
+                    <!-- Computed Properties -->
+                    <p>Computed Property: {{ computedValue }}</p>
+
+                    <!-- Class and Style Bindings -->
+                    <div :class="{'active': isActive, 'error': hasError}">Conditional Classes</div>
+                    <div :style="{'color': textColor, 'font-size': fontSize + 'px'}">Inline Styles</div>
+                </div>
+            `,
+            data() {
+                return {
+                    message: "Hello, Vue!",
+                    dynamicId: "my-element",
+                    count: 0,
+                    isActive: true,
+                    hasError: false,
+                    textColor: "blue",
+                    fontSize: 16,
+                };
+            },
+            methods: {
+                sayHello() {
+                    alert("Hello!");
+                },
+                incrementCount() {
+                    this.count++;
+                },
+            },
+            computed: {
+                computedValue() {
+                    return this.count * 2;
+                },
+            },
+        };
+
+        // Create a Vue app and mount the App component
+        const app = Vue.createApp(App);
+        app.mount("#app");
+    </script>
+</body>
+</html>
